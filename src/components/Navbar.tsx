@@ -1,38 +1,3 @@
-// 'use client'
-
-// import { Shield, Github, Info } from 'lucide-react'
-
-// export default function Navbar() {
-//   return (
-//     <nav className="glass-effect border-b border-white/20 sticky top-0 z-50">
-//       <div className="max-w-6xl mx-auto px-4 py-4">
-//         <div className="flex items-center justify-between">
-//           <div className="flex items-center space-x-3">
-//             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-//               <Shield className="w-6 h-6 text-white" />
-//             </div>
-//             <div>
-//               <h1 className="font-bold text-lg gradient-text">DeepfakeGuard</h1>
-//               <p className="text-xs text-gray-500">AI Detection System</p>
-//             </div>
-//           </div>
-          
-//           <div className="flex items-center space-x-4">
-//             <button className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-white/20 transition-colors">
-//               <Info className="w-4 h-4" />
-//               <span className="text-sm font-medium">About</span>
-//             </button>
-            
-//             <button className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-white/20 transition-colors">
-//               <Github className="w-4 h-4" />
-//               <span className="text-sm font-medium">GitHub</span>
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </nav>
-//   )
-// }
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -102,10 +67,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Stats */}
             <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
-              <div className="flex items-center space-x-1">
+              {/* <div className="flex items-center space-x-1">
                 <Users className="w-4 h-4" />
                 <span>10K+ Users</span>
-              </div>
+              </div> */}
               <div className="flex items-center space-x-1">
                 <Star className="w-4 h-4 text-yellow-500" />
                 <span>98% Accuracy</span>
@@ -113,7 +78,7 @@ export default function Navbar() {
             </div>
 
             {/* Theme toggle */}
-            <button
+            {/* <button
               onClick={toggleTheme}
               className="p-2 rounded-lg hover:bg-white/20 transition-colors"
               aria-label="Toggle theme"
@@ -123,7 +88,7 @@ export default function Navbar() {
               ) : (
                 <Moon className="w-5 h-5 text-gray-600" />
               )}
-            </button>
+            </button> */}
 
             {/* GitHub */}
             <a
@@ -137,10 +102,10 @@ export default function Navbar() {
             </a>
 
             {/* Download */}
-            <button className="btn-primary flex items-center space-x-2">
+            {/* <button className="btn-primary flex items-center space-x-2">
               <Download className="w-4 h-4" />
               <span>Download</span>
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile menu button */}

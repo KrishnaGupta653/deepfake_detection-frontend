@@ -1,191 +1,3 @@
-// // src/app/page.tsx
-// 'use client'
-
-// import { useState } from 'react'
-// import { Upload, Shield, Brain, Zap, CheckCircle, AlertTriangle } from 'lucide-react'
-// import UploadForm from '@/components/UploadForm'
-// import ResultDisplay from '@/components/ResultDisplay'
-// import Navbar from '@/components/Navbar'
-
-// interface PredictionResult {
-//   success: boolean
-//   prediction: string
-//   confidence: number
-//   probabilities: {
-//     fake: number
-//     real: number
-//   }
-//   analysis: string
-//   gradcam?: string
-//   image_url?: string
-//   timestamp: string
-//   model_info: {
-//     name: string
-//     version: string
-//     accuracy: string
-//   }
-// }
-
-// export default function Home() {
-//   const [result, setResult] = useState<PredictionResult | null>(null)
-//   const [loading, setLoading] = useState(false)
-//   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
-
-//   const handlePrediction = (predictionResult: PredictionResult, imageUrl: string) => {
-//     setResult(predictionResult)
-//     setUploadedImage(imageUrl)
-//   }
-
-//   const handleReset = () => {
-//     setResult(null)
-//     setUploadedImage(null)
-//   }
-
-//   return (
-//     <div className="min-h-screen">
-//       <Navbar />
-      
-//       {/* Hero Section */}
-//       <section className="relative overflow-hidden py-20 px-4">
-//         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        
-//         <div className="relative max-w-6xl mx-auto">
-//           {!result ? (
-//             <div className="text-center mb-12">
-//               <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-6 animate-float">
-//                 <Brain className="w-10 h-10 text-white" />
-//               </div>
-              
-//               <h1 className="text-5xl md:text-6xl font-bold mb-6">
-//                 <span className="gradient-text">AI Deepfake</span>
-//                 <br />
-//                 Detection System
-//               </h1>
-              
-//               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-//                 Upload any image to detect if it's real or artificially generated using our 
-//                 advanced EfficientNet-B0 AI model with 98%+ accuracy
-//               </p>
-              
-//               {/* Features */}
-//               <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-//                 <div className="glass-effect rounded-2xl p-6 hover:scale-105 transition-transform">
-//                   <Shield className="w-8 h-8 text-blue-500 mx-auto mb-4" />
-//                   <h3 className="font-semibold mb-2">98%+ Accuracy</h3>
-//                   <p className="text-sm text-gray-600">State-of-the-art EfficientNet-B0 model</p>
-//                 </div>
-                
-//                 <div className="glass-effect rounded-2xl p-6 hover:scale-105 transition-transform">
-//                   <Zap className="w-8 h-8 text-purple-500 mx-auto mb-4" />
-//                   <h3 className="font-semibold mb-2">Fast Processing</h3>
-//                   <p className="text-sm text-gray-600">Results in 2-3 seconds</p>
-//                 </div>
-                
-//                 <div className="glass-effect rounded-2xl p-6 hover:scale-105 transition-transform">
-//                   <Brain className="w-8 h-8 text-green-500 mx-auto mb-4" />
-//                   <h3 className="font-semibold mb-2">AI Explainability</h3>
-//                   <p className="text-sm text-gray-600">Detailed analysis with Grad-CAM</p>
-//                 </div>
-//               </div>
-//             </div>
-//           ) : null}
-          
-//           {/* Upload Form or Results */}
-//           <div className="max-w-4xl mx-auto">
-//             {!result ? (
-//               <UploadForm 
-//                 onPrediction={handlePrediction}
-//                 loading={loading}
-//                 setLoading={setLoading}
-//               />
-//             ) : (
-//               <ResultDisplay 
-//                 result={result}
-//                 uploadedImage={uploadedImage}
-//                 onReset={handleReset}
-//               />
-//             )}
-//           </div>
-//         </div>
-//       </section>
-      
-//       {/* Technical Details Section */}
-//       {!result && (
-//         <section className="py-16 px-4 bg-white/50">
-//           <div className="max-w-4xl mx-auto">
-//             <h2 className="text-3xl font-bold text-center mb-12 gradient-text">
-//               How It Works
-//             </h2>
-            
-//             <div className="grid md:grid-cols-2 gap-8">
-//               <div className="space-y-6">
-//                 <div className="flex items-start space-x-4">
-//                   <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-//                     <Upload className="w-4 h-4 text-blue-600" />
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">Upload Image</h3>
-//                     <p className="text-gray-600 text-sm">
-//                       Upload any image in PNG, JPG, JPEG, or WEBP format (max 16MB)
-//                     </p>
-//                   </div>
-//                 </div>
-                
-//                 <div className="flex items-start space-x-4">
-//                   <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-//                     <Brain className="w-4 h-4 text-purple-600" />
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">AI Analysis</h3>
-//                     <p className="text-gray-600 text-sm">
-//                       EfficientNet-B0 model analyzes image features to detect deepfake patterns
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-              
-//               <div className="space-y-6">
-//                 <div className="flex items-start space-x-4">
-//                   <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-//                     <CheckCircle className="w-4 h-4 text-green-600" />
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">Get Results</h3>
-//                     <p className="text-gray-600 text-sm">
-//                       Receive detailed analysis with confidence scores and explanations
-//                     </p>
-//                   </div>
-//                 </div>
-                
-//                 <div className="flex items-start space-x-4">
-//                   <div className="flex-shrink-0 w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-//                     <AlertTriangle className="w-4 h-4 text-orange-600" />
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">Visual Explanation</h3>
-//                     <p className="text-gray-600 text-sm">
-//                       Grad-CAM heatmaps show which image regions influenced the decision
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       )}
-      
-//       {/* Footer */}
-//       <footer className="py-8 px-4 bg-white/30 border-t border-white/20">
-//         <div className="max-w-4xl mx-auto text-center text-gray-600">
-//           <p className="text-sm">
-//             © 2024 AI Deepfake Detection System. Powered by EfficientNet-B0 | 
-//             <span className="ml-2 font-semibold">98%+ Accuracy</span>
-//           </p>
-//         </div>
-//       </footer>
-//     </div>
-//   )
-// }
 'use client'
 
 import { useState } from 'react'
@@ -229,10 +41,11 @@ export default function Home() {
   }
 
   const stats = [
-    { icon: Users, label: 'Active Users', value: '10K+' },
+    // { icon: Users, label: 'Active Users', value: '10K+' },
+    { icon: Users, label: 'Detections Completed', value: '1K+' },
     { icon: Shield, label: 'Accuracy Rate', value: '98.5%' },
     { icon: Zap, label: 'Avg. Processing', value: '2.3s' },
-    { icon: Globe, label: 'Images Analyzed', value: '500K+' },
+    { icon: Globe, label: 'Images Analyzed', value: '10K+' },
   ]
 
   const features = [
@@ -295,7 +108,7 @@ export default function Home() {
                 </p>
                 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
+                {/* <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
                   <button className="btn-primary text-lg px-8 py-4 flex items-center space-x-3">
                     <Upload className="w-5 h-5" />
                     <span>Try It Now - Free</span>
@@ -305,7 +118,7 @@ export default function Home() {
                     <Play className="w-5 h-5" />
                     <span>Watch Demo</span>
                   </button>
-                </div>
+                </div> */}
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
